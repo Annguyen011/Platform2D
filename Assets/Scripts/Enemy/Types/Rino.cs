@@ -4,14 +4,9 @@ using UnityEngine;
 
 public class Rino : Enemy
 {
-    [SerializeField] private float speed = 3f;
-    [SerializeField] private float idleTime;
     [SerializeField] private float shockTime;
-    [SerializeField] private LayerMask playerMask;
 
-    private bool playerdetected;
     private bool isAggresstive;
-    private float idleTimeCounter;
     private float shockTimeCounter;
 
     protected override void Awake()
@@ -30,7 +25,6 @@ public class Rino : Enemy
         idleTimeCounter -= Time.deltaTime;
         shockTimeCounter -= Time.deltaTime;
 
-        playerdetected = Physics2D.Raycast(transform.position, Vector2.right * facingDirection, 4f, playerMask);
 
         if (playerdetected)
         {
