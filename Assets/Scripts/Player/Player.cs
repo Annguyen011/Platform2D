@@ -5,8 +5,12 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class Player : MonoBehaviour
 {
+    public int fruits = 1;
+    private bool isdead = false;
+
     [Header("Move info")]
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float lifeTime = .2f;
     [SerializeField] private float jumpForce = 12f;
     [SerializeField] private float doubleJumpForce = 10f;
     [SerializeField] private float bufferJumpTime;
@@ -40,6 +44,7 @@ public class Player : MonoBehaviour
     private bool isWallDetected;
     private bool isGrounded;
 
+    private SpriteRenderer sprite;
     private Rigidbody2D rb;
     private Animator animator;
 
@@ -47,6 +52,12 @@ public class Player : MonoBehaviour
     {
         this.rb = GetComponent<Rigidbody2D>();
         this.animator = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
+    }
+
+    private void OnEnable()
+    {
+        isdead = false;
     }
 
     private void Start()
@@ -59,6 +70,8 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        CheckAlive();
+        if (isdead) return;
 
         bufferJumpTime -= Time.deltaTime;
         cayoteJumpCounter -= Time.deltaTime;
@@ -77,6 +90,22 @@ public class Player : MonoBehaviour
         WallSlide();
         CheckForEnemy();
 
+
+
+    }
+    void CheckAlive()
+    {
+        sprite.enabled = !isdead;
+        if (fruits <= 0)
+        {
+            fruits = 1;
+            isdead = true;
+            Invoke(nameof(ReSpawnPlayer), lifeTime);
+        }
+    }
+    public void Push(float force)
+    {
+        rb.velocity = new Vector2(rb.velocity.x, force);
     }
 
     private void CheckForEnemy()
@@ -104,6 +133,10 @@ public class Player : MonoBehaviour
         isKnockback = true;
         canBeKnockback = false;
 
+        fruits--;
+
+
+
         float direction;
         direction = (transform.position.x > DamageTransform.position.x) ? 1 : -1;
 
@@ -121,6 +154,12 @@ public class Player : MonoBehaviour
     private void CancelKnockback()
     {
         isKnockback = false;
+    }
+
+    private void ReSpawnPlayer()
+    {
+        PlayerManager.instance.ResetPlayer();
+        isdead = false;
     }
 
     private void WallSlide()

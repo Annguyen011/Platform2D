@@ -63,7 +63,6 @@ public class TrapSaw : Trap
     {
         base.OnTriggerEnter2D(collision);
     }
-
     private void Flip()
     {
         Vector3 scale = transform.localScale;
