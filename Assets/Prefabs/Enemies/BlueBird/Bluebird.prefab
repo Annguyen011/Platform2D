@@ -100,12 +100,12 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
@@ -169,6 +169,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invisible: 0
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 0
   whatisground:
     serializedVersion: 2
     m_Bits: 64
@@ -176,6 +179,7 @@ MonoBehaviour:
   wallcheckdistance: 1.1
   idleTime: 0.2
   speed: 3
+  checkPlayerDistance: 10
   groundCheck: {fileID: 1117568771133167733}
   wallCheck: {fileID: 1117568771027057341}
   groundAbovedetectedDistance: 2

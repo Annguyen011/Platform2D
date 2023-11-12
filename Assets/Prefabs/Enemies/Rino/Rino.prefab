@@ -50,19 +50,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invisible: 0
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 256
   whatisground:
     serializedVersion: 2
     m_Bits: 64
   groundcheckdistance: 1.2
   wallcheckdistance: 1.55
+  idleTime: 0.4
+  speed: 3
+  checkPlayerDistance: 10
   groundCheck: {fileID: 8754907319766419883}
   wallCheck: {fileID: 8754907319737805667}
-  speed: 3
-  idleTime: 0.4
   shockTime: 1
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!212 &8754907318136817828
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -126,12 +127,12 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
