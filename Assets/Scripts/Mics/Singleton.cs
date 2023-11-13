@@ -11,7 +11,7 @@ public class Singleton<T> : MonoBehaviour where T : Component
         if(instance != null)
         {
             Debug.LogError("Has a instance: " + transform.name);
-            Destroy(instance);
+            Destroy(instance.gameObject);
         }
         else
         {

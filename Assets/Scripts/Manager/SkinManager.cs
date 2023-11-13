@@ -13,6 +13,11 @@ public class SkinManager : MonoBehaviour
     [SerializeField] private bool[] skinPurchased;
     [SerializeField] private float[] skinPurchasedPrice;
 
+    private void Start()
+    {
+        skinPurchased[0] = true;
+    }
+
     public void NextSkin()
     {
         skinId++;
@@ -62,7 +67,7 @@ public class SkinManager : MonoBehaviour
 
     public void Equip()
     {
-
+        PlayerManager.instance.choosenSkinId = skinId;
     }
 
 }

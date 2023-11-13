@@ -5,18 +5,30 @@ using UnityEngine;
 
 public class PlayerManager : Singleton<PlayerManager>
 {
-    public Player player;
-    public Vector3 pointSpawn = new Vector3(0,0,0);
+    public int choosenSkinId;
+    public GameObject player;
+    public Vector3 pointSpawn = new Vector3(0, 0, 0);
 
     protected override void Awake()
     {
+        DontDestroyOnLoad(this);
+        player = GameObject.FindGameObjectWithTag("Player");
         base.Awake();
         if (pointSpawn == null)
             pointSpawn = player.transform.position;
     }
 
+    private void Start()
+    {
+
+    }
+
     private void Update()
     {
+        if(player == null)
+        {
+            Instantiate(player, pointSpawn, Quaternion.identity);
+        }
 
         if (Input.GetKeyDown(KeyCode.R))
             ResetPlayer();

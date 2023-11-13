@@ -7,8 +7,6 @@ using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private bool[] levelOpen;
-
     [SerializeField] private GameObject levelButton;
     [SerializeField] private Transform levelButtonParent;
 
@@ -17,8 +15,6 @@ public class LevelManager : MonoBehaviour
     {
         for (int i = 1; i < SceneManager.sceneCountInBuildSettings; i++)
         {
-            if (!levelOpen[i]) return;
-
             nameLevel = "Level_" + (i - 1);
 
             GameObject newButton = Instantiate(levelButton, levelButtonParent);
