@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7521c73dbcb52d34f95d6d79ba04420e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLife: 6
+  timeLife: 40
 --- !u!212 &8844088419350229560
 SpriteRenderer:
   m_ObjectHideFlags: 0

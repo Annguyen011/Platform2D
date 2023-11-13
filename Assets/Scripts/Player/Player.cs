@@ -6,6 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public int fruits = 1;
+    [SerializeField] private bool UISence;
     private bool isdead = false;
 
     [Header("Move info")]
@@ -15,9 +16,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float doubleJumpForce = 10f;
     [SerializeField] private float bufferJumpTime;
     [SerializeField] private float cayoteJumpTime;
+    [SerializeField] private bool canMove;
     private bool canHaveCayoteJump;
     private float cayoteJumpCounter;
-    private bool canMove;
     private bool canDoubleJump;
     private bool facingRight = true;
     private int facingDirection = 1;
@@ -70,6 +71,14 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (UISence)
+        {
+            sprite.enabled = false;
+            animator.enabled = false;
+            rb.gravityScale = 0f;
+            return;
+        }
+
         CheckAlive();
         if (isdead) return;
 
